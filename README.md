@@ -16,4 +16,4 @@ To run:
    ```
 
 If you face any issues, message me on Telegram: [@NAKBlockDev](https://t.me/NAKBlockDev)
-<!-- updated: 2025-04-19 -->
+<!-- updated: 2026-05-29 -->

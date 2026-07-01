@@ -11,7 +11,7 @@ class HybridStrangleTrader:
             print("✅ Connected to IBKR")
         except Exception as e:
             print(f"❌ Error connecting to IBKR: {e}")
-        
+
         # Parameters
         self.account_value = 4900
         self.max_strangles = 2

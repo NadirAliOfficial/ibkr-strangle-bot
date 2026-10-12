@@ -7,7 +7,7 @@ To run:
 1. Start IBKR TWS or Gateway with API enabled (port 7497).
 2. Install requirements:
    ```bash
-   pip install ib_insync numpy
+   pip install -r requirements.txt
    ```
 3. Run the bot:
    ```bash
@@ -27,7 +27,8 @@ The project provides an automated trading bot that connects to Interactive Broke
 - Calculates IV rank based on historical volatility.
 - Skips stocks on a blacklist or with upcoming earnings.
 - Determines strike prices based on IV rank and market price.
-- Places limit orders to sell put and call options as a strangle.
+- Picks listed strikes and expiries from the option chain.
+- Sells both legs at the mid price and records the actual fill credit; unfilled orders are cancelled.
 - Tracks current positions with timestamps and credit information.
 
 ## Requirements
@@ -38,15 +39,15 @@ The project provides an automated trading bot that connects to Interactive Broke
 
 ## Installation
 
-Install the required Python packages directly:
-
 ```bash
-pip install ib_insync numpy
+pip install -r requirements.txt
 ```
 
 ## Configuration
 
-The script does not rely on external environment variables; all parameters are defined within `bot.py`.
+Strategy parameters are defined in `bot.py`.
+
+Earnings dates are read from `earnings.json` (same format as `earnings.example.json`). Without it the bot still runs but does not skip stocks ahead of earnings, and prints a warning.
 
 ## Usage
 
@@ -56,9 +57,17 @@ Run the bot after starting IBKR TWS or Gateway:
 python3 bot.py
 ```
 
+## Tests
+
+```bash
+python3 -m unittest
+```
+
 ## Project Structure
 
 - `bot.py` – Main trading script implementing the strangle strategy.
+- `tests/` – Unit tests.
+- `earnings.example.json` – Example earnings calendar.
 - `README.md` – Documentation.
 - `LICENSE` – MIT license file.
 
